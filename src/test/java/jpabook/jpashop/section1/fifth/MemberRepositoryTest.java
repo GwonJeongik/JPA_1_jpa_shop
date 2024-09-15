@@ -36,6 +36,4 @@ class MemberRepositoryTest {
         // [영속성 컨텍스트로 인해서 동일성이 보장된다.]
         assertThat(findMember).isEqualTo(member);
     }
-
-
 }
