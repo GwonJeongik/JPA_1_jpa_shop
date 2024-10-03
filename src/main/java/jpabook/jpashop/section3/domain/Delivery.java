@@ -1,7 +1,6 @@
 package jpabook.jpashop.section3.domain;
 
 import jakarta.persistence.*;
-import jpabook.jpashop.section3.domain.item.Address;
 import lombok.Getter;
 
 @Entity
