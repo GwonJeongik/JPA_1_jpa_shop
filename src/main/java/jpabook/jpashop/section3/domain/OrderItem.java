@@ -26,4 +26,7 @@ public class OrderItem {
     //주문 수량
     private int count;
 
+    public void changeOrder(Order order) {
+        this.order = order;
+    }
 }
