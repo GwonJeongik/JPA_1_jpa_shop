@@ -11,7 +11,8 @@ public class Address {
     private String street;
     private String zipCode;
 
-    public Address() {
+    //JPA 스펙에 맞추기 위해 만들어 놓은 기본 생성자
+    protected Address() {
     }
 
     public Address(String city, String street, String zipCode) {
