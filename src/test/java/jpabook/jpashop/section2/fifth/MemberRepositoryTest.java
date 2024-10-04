@@ -3,6 +3,7 @@ package jpabook.jpashop.section2.fifth;
 import jpabook.jpashop.section3.domain.Member;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,14 +18,14 @@ import static org.assertj.core.api.Assertions.assertThat;
 class MemberRepositoryTest {
 
     @Autowired
+    @Qualifier(value = "section2MemberRepository")
     MemberRepository memberRepository;
 
     @Test
     @Transactional
     void testMember() {
         //given
-        Member member = new Member();
-//        member.setUsername("Test Member");
+        Member member = new Member("정우형");
 
         //when
         Long saveMemberId = memberRepository.save(member);
@@ -32,7 +33,7 @@ class MemberRepositoryTest {
 
         //then
         assertThat(findMember.getId()).isEqualTo(member.getId());
-//        assertThat(findMember.getUsername()).isEqualTo(member.getUsername());
+        assertThat(findMember.getName()).isEqualTo(member.getName());
 
         // JPA 엔티티 동일성 보장
         // [영속성 컨텍스트로 인해서 동일성이 보장된다.]
