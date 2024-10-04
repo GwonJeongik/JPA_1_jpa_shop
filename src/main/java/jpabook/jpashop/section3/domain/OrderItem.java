@@ -13,6 +13,10 @@ public class OrderItem {
     @Column(name = "order_item_id")
     private Long id;
 
+    //주문 수량
+    private int count;
+    private int orderPrice;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "item_id")
     private Item item;
@@ -20,11 +24,6 @@ public class OrderItem {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "order_id")
     private Order order;
-
-    private int orderPrice;
-
-    //주문 수량
-    private int count;
 
     public void changeOrder(Order order) {
         this.order = order;

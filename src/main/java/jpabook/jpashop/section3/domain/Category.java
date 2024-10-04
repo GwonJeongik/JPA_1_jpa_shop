@@ -16,6 +16,8 @@ public class Category {
     @Column(name = "category_id")
     private Long id;
 
+    private String name;
+
     @ManyToMany
     @JoinTable(name = "category_item", joinColumns =
     @JoinColumn(name = "catefory_id"), inverseJoinColumns =
@@ -28,8 +30,6 @@ public class Category {
 
     @OneToMany(mappedBy = "parent")
     private List<Category> child = new ArrayList<>();
-
-    private String name;
 
     /* Category 연관관계 편의 메서드 */
     public void addChildCategory(Category child) {

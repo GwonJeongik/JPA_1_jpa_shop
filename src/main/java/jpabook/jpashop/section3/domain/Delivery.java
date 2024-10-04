@@ -12,14 +12,14 @@ public class Delivery {
     @Column(name = "delivery_id")
     private Long id;
 
-    @OneToOne(mappedBy = "delivery", fetch = FetchType.LAZY)
-    private Order order;
+    @Enumerated(EnumType.STRING)
+    private DeliveryStatus status;
 
     @Embedded
     private Address address;
 
-    @Enumerated(EnumType.STRING)
-    private DeliveryStatus status;
+    @OneToOne(mappedBy = "delivery", fetch = FetchType.LAZY)
+    private Order order;
 
     public void changeOrder(Order order) {
         this.order = order;

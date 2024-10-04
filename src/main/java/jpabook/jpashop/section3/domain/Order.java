@@ -17,6 +17,11 @@ public class Order {
     @Column(name = "order_id")
     private Long id;
 
+    private LocalDateTime orderDate;
+
+    @Enumerated(value = EnumType.STRING)
+    private OrderStatus status;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
     private Member member;
@@ -27,11 +32,6 @@ public class Order {
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "delivery_id")
     private Delivery delivery;
-
-    @Enumerated(value = EnumType.STRING)
-    private OrderStatus status;
-
-    private LocalDateTime orderDate;
 
     /* Member 연관관계 편의 메서드 */
     public void changeMember(Member member) {
@@ -50,6 +50,4 @@ public class Order {
         this.delivery = delivery;
         delivery.changeOrder(this);
     }
-
-
 }
