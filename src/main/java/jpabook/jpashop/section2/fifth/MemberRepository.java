@@ -13,7 +13,7 @@ import org.springframework.stereotype.Repository;
  *
  * Member 클래스 섹션 3에서 써애햐서 가져감ㅋㅋ~
  */
-@Repository
+//@Repository
 @RequiredArgsConstructor
 public class MemberRepository {
 
