@@ -2,6 +2,7 @@ package jpabook.jpashop.section3.domain.item;
 
 import jakarta.persistence.*;
 import jpabook.jpashop.section3.domain.Category;
+import jpabook.jpashop.section5.UpdateDto;
 import lombok.Getter;
 
 import java.util.ArrayList;
@@ -24,4 +25,28 @@ public class Item {
     private String name;
     private int price;
     private int stockQuantity;
+
+    /* 상품 수정 메서드 */
+    public void updateItem(UpdateDto updateParam) {
+        this.name = updateParam.getName();
+        this.price = updateParam.getPrice();
+        this.stockQuantity = updateParam.getStockQuantity();
+    }
+
+    /* 재고 증가 메서드 */
+    public void addStock(int quantity) {
+        this.stockQuantity += quantity;
+    }
+
+    /* 재고 감소 메서드 */
+    public void removeStock(int quantity) {
+        int result = this.stockQuantity + quantity;
+
+        //==수정된 재고 마이너스 검증==//
+        if (result < 0) {
+            throw new NotEnoughStockQuantity("need more stock");
+        }
+
+        this.stockQuantity = result;
+    }
 }

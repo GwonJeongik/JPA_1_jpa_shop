@@ -1,7 +1,8 @@
 package jpabook.jpashop.section4.service;
 
 import jpabook.jpashop.section3.domain.Member;
-import jpabook.jpashop.section4.repository.MemberRepository;
+import jpabook.jpashop.section4.member.repository.MemberRepository;
+import jpabook.jpashop.section4.member.service.MemberService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

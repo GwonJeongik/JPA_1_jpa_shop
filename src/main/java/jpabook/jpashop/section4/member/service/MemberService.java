@@ -1,7 +1,7 @@
-package jpabook.jpashop.section4.service;
+package jpabook.jpashop.section4.member.service;
 
 import jpabook.jpashop.section3.domain.Member;
-import jpabook.jpashop.section4.repository.MemberRepository;
+import jpabook.jpashop.section4.member.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
