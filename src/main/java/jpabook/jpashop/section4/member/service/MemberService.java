@@ -28,8 +28,8 @@ public class MemberService {
     public Member findOne(Long memberId) {
         return repository.findOne(memberId);
     }
-    /* 모든 회원 조회*/
 
+    /* 모든 회원 조회*/
     public List<Member> findMembers() {
         return repository.findAll();
     }
