@@ -106,10 +106,10 @@ public class Order {
     }
 
     //=== 조회 로직 ===//
-    /* 전체 주문 가격 조회 메서드*/
+    /* 전체 주문 가격 조회 메서드 */
     public int getTotalPrice() {
         int totalPrice = 0;
-        //1. 각 상품의 주문한 가격을 더함.//
+        //1. 각 상품의 주문한 가격을 더함.
         for (OrderItem orderItem : orderItems) {
             totalPrice += orderItem.getTotalPrice();
         }

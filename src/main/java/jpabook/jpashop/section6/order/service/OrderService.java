@@ -8,9 +8,12 @@ import jpabook.jpashop.section3.domain.OrderItem;
 import jpabook.jpashop.section3.domain.item.Item;
 import jpabook.jpashop.section5.item.repository.ItemRepository;
 import jpabook.jpashop.section6.order.repository.OrderRepository;
+import jpabook.jpashop.section6.order.repository.OrderSearch;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -30,7 +33,7 @@ public class OrderService {
      * @return 주문 id
      */
     @Transactional
-    public Long crateOrder(Long memberId, Long itemId, int count) {
+    public Long createOrder(Long memberId, Long itemId, int count) {
         //1. 엔티티 조회
         Member member = memberRepository.find(memberId);
         Item item = itemRepository.findOne(itemId);
@@ -50,8 +53,12 @@ public class OrderService {
         return order.getId();
     }
 
-//    public List<Order> findAll(OrderSearch orderSearch) {
-//    }
+    public List<Order> findAll(OrderSearch orderSearch) {
+        //1. 회원 엔티티 조회
+        Long memberId = orderSearch.getMemberId();
+
+        return orderRepository.findAll(memberId, orderSearch.getStatus());
+    }
 
     /**
      * 주문 취소
