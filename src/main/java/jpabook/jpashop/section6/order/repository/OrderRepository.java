@@ -5,8 +5,6 @@ import jpabook.jpashop.section3.domain.Order;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
-
 @Repository
 @RequiredArgsConstructor
 public class OrderRepository {
@@ -18,17 +16,12 @@ public class OrderRepository {
         em.persist(order);
     }
 
+    /* 주문 단건 조회 */
+    public Order findOne(Long orderId) {
+        return em.find(Order.class, orderId);
+    }
+
     /* 주문 내역 조회 */
-    public List<Order> findAll() {
-        return em.createQuery("select o from Order o", Order.class)
-                .getResultList();
-    }
-
-    /* 주문 삭제 */
-    public void delete(Long id) {
-        em.createQuery("delete from Order o where o.id = :id")
-                .setParameter("id", id)
-                .executeUpdate();
-    }
-
+//    public List<Order> findAll(OrderSearch orderSearch) {
+//    }
 }

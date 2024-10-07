@@ -21,7 +21,14 @@ public class Delivery {
     @OneToOne(mappedBy = "delivery", fetch = FetchType.LAZY)
     private Order order;
 
+    /* Order 변경 메서드 */
     public void changeOrder(Order order) {
         this.order = order;
     }
+
+    /* address 변경 메서드 */
+    public void changeAddress(Address address) {
+        this.address = address;
+    }
+
 }
