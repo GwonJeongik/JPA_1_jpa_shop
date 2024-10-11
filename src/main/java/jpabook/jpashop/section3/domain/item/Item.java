@@ -2,7 +2,6 @@ package jpabook.jpashop.section3.domain.item;
 
 import jakarta.persistence.*;
 import jpabook.jpashop.section3.domain.Category;
-import jpabook.jpashop.section5.UpdateDto;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -36,10 +35,10 @@ public class Item {
     }
 
     /* 상품 수정 메서드 */
-    public void updateItem(UpdateDto updateParam) {
-        this.name = updateParam.getName();
-        this.price = updateParam.getPrice();
-        this.stockQuantity = updateParam.getStockQuantity();
+    public void updateItem(String name, int price, int stockQuantity) {
+        this.name = name;
+        this.price = price;
+        this.stockQuantity = stockQuantity;
     }
 
     /* 재고 증가 메서드 */

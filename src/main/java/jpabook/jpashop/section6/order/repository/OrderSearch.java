@@ -10,7 +10,7 @@ import lombok.RequiredArgsConstructor;
 public class OrderSearch {
 
     @NotNull
-    private final Long memberId;
+    private final String memberName;
     @NotNull
     private final OrderStatus status;
 }

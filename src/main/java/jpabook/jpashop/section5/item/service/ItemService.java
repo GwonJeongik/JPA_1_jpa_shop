@@ -18,7 +18,7 @@ public class ItemService {
 
     /* 상품 등록 메서드 */
     @Transactional
-    public Long createItem(Item item) {
+    public Long saveItem(Item item) {
         itemRepository.save(item);
         return item.getId();
     }
@@ -31,11 +31,5 @@ public class ItemService {
     /* 상품 목록 조회 메서드 */
     public List<Item> findItems() {
         return itemRepository.findAll();
-    }
-
-    /* 상품 수정 메서드 */
-    @Transactional
-    public void updateItem(Long id, UpdateDto updateParam) {
-        itemRepository.update(id, updateParam);
     }
 }

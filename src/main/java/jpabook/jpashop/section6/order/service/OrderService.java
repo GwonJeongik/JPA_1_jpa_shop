@@ -55,9 +55,7 @@ public class OrderService {
 
     public List<Order> findAll(OrderSearch orderSearch) {
         //1. 회원 엔티티 조회
-        Long memberId = orderSearch.getMemberId();
-
-        return orderRepository.findAll(memberId, orderSearch.getStatus());
+        return null;
     }
 
     /**

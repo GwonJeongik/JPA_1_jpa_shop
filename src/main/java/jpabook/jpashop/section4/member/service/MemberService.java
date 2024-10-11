@@ -2,6 +2,7 @@ package jpabook.jpashop.section4.member.service;
 
 import jpabook.jpashop.section3.domain.Member;
 import jpabook.jpashop.section4.member.repository.MemberRepository;
+import jpabook.jpashop.section7.web.MemberForm;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -30,8 +31,12 @@ public class MemberService {
     }
 
     /* 모든 회원 조회*/
-    public List<Member> findMembers() {
-        return repository.findAll();
+    public List<MemberForm> findMembers() {
+        List<Member> members = repository.findAll();
+
+        return members.stream()
+                .map(MemberForm::new)
+                .toList();
     }
 
     /* 중복 회원 검증 */

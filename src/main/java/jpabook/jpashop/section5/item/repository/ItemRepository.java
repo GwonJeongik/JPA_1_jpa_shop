@@ -37,10 +37,4 @@ public class ItemRepository {
         return em.createQuery("select i from Item i", Item.class)
                 .getResultList();
     }
-
-    /* 상품 수정 메서드 */
-    public void update(Long id, UpdateDto updateParam) {
-        Item item = em.find(Item.class, id);
-        item.updateItem(updateParam);
-    }
 }

@@ -2,7 +2,6 @@ package jpabook.jpashop.section6.order.repository;
 
 import jakarta.persistence.EntityManager;
 import jpabook.jpashop.section3.domain.Order;
-import jpabook.jpashop.section3.domain.OrderStatus;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
@@ -25,10 +24,8 @@ public class OrderRepository {
     }
 
     /* 주문 내역 조회 */
-    public List<Order> findAll(Long memberId, OrderStatus status) {
-        return em.createQuery("select o from Order o where o.member.id = :memberId and o.status = :status", Order.class)
-                .setParameter("memberId", memberId)
-                .setParameter("status", status)
+    public List<Order> findAll(OrderSearch orderSearch) {
+        return em.createQuery("select o from Order o join o.member m", Order.class)
                 .getResultList();
     }
 }
