@@ -31,4 +31,9 @@ public class Delivery {
         this.address = address;
     }
 
+    /* delivery status 변경 메서드 */
+    public void changeStatus(DeliveryStatus status) {
+        this.status = status;
+    }
+
 }
