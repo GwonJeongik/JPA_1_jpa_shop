@@ -17,7 +17,7 @@ public class BookForm {
     private String author;
     private String isbn;
 
-    public void UseBook(Book book) {
+    public void initializeByBook(Book book) {
         this.id = book.getId();
         this.price = book.getPrice();
         this.stockQuantity = book.getStockQuantity();

@@ -2,6 +2,7 @@ package jpabook.jpashop.section3.domain.item;
 
 import jakarta.persistence.*;
 import jpabook.jpashop.section3.domain.Category;
+import jpabook.jpashop.section5.UpdateItemDto;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -34,11 +35,16 @@ public class Item {
         this.stockQuantity = stockQuantity;
     }
 
+    /* 상품 수정 */
+    public void changeId(Long id) {
+        this.id = id;
+    }
+
     /* 상품 수정 메서드 */
-    public void updateItem(String name, int price, int stockQuantity) {
-        this.name = name;
-        this.price = price;
-        this.stockQuantity = stockQuantity;
+    public void updateItem(UpdateItemDto updateItemDto) {
+        this.name = updateItemDto.getName();
+        this.price = updateItemDto.getPrice();
+        this.stockQuantity = updateItemDto.getStockQuantity();
     }
 
     /* 재고 증가 메서드 */
@@ -56,5 +62,16 @@ public class Item {
         }
 
         this.stockQuantity = result;
+    }
+
+    @Override
+    public String toString() {
+        return "Item{" +
+                "id=" + id +
+                ", categories=" + categories +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                ", stockQuantity=" + stockQuantity +
+                '}';
     }
 }

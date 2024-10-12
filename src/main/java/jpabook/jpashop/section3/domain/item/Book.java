@@ -25,19 +25,17 @@ public class Book extends Item {
      */
     public static Book createBook(BookForm bookForm) {
         Book book = new Book(bookForm.getName(), bookForm.getPrice(), bookForm.getStockQuantity());
+
+        book.changeId(bookForm.getId());
         book.author = bookForm.getAuthor();
         book.isbn = bookForm.getIsbn();
+
         return book;
     }
 
-    /**
-     * Book 필드 수정 메서드
-     *
-     * @param bookForm
-     */
-    public void updateBook(BookForm bookForm) {
-        this.updateItem(bookForm.getName(), bookForm.getPrice(), bookForm.getStockQuantity());
-        this.author = bookForm.getAuthor();
-        this.isbn = bookForm.getIsbn();
+    /* book 필드 수정 메서드 */
+    public void updateBook(String author, String isbn) {
+        this.author = author;
+        this.isbn = isbn;
     }
 }

@@ -3,7 +3,6 @@ package jpabook.jpashop.section5.item.repository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jpabook.jpashop.section3.domain.item.Item;
-import jpabook.jpashop.section5.UpdateDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
@@ -36,5 +35,9 @@ public class ItemRepository {
     public List<Item> findAll() {
         return em.createQuery("select i from Item i", Item.class)
                 .getResultList();
+    }
+
+    public void update(Item item) {
+
     }
 }

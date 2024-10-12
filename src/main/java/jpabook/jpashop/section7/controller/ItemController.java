@@ -3,8 +3,10 @@ package jpabook.jpashop.section7.controller;
 import jakarta.validation.Valid;
 import jpabook.jpashop.section3.domain.item.Book;
 import jpabook.jpashop.section3.domain.item.Item;
+import jpabook.jpashop.section5.UpdateItemDto;
 import jpabook.jpashop.section5.item.service.ItemService;
 import jpabook.jpashop.section7.web.BookForm;
+import jpabook.jpashop.section7.web.ItemForm;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -35,7 +37,7 @@ public class ItemController {
     }
 
     /**
-     * 상품 생성
+     * 상품 등록
      *
      * @param bookForm      id, price, stockQuantity, name, author, isbn
      * @param bindingResult BookForm 검증 결과 오류를 담음.
@@ -74,12 +76,12 @@ public class ItemController {
      * @return items/updateItemForm
      */
     @GetMapping("/{itemId}/edit")
-    public String updateForm(@PathVariable(value = "itemId") Long itemId, Model model) {
+    public String updateItemForm(@PathVariable(value = "itemId") Long itemId, Model model) {
         Item item = itemService.findOne(itemId);
 
         if (item instanceof Book book) {
             BookForm bookForm = new BookForm();
-            bookForm.UseBook(book);
+            bookForm.initializeByBook(book);
             model.addAttribute("form", bookForm);
         }
 
@@ -89,27 +91,22 @@ public class ItemController {
     /**
      * 상품 수정
      *
-     * @param bookForm      id, price, stockQuantity, name, author, isbn
+     * @param form          id, price, stockQuantity, name, author, isbn
      * @param bindingResult
      * @return redirect:/items
      */
     @PostMapping("/{itemId}/edit")
-    public String update(
+    public String updateItem(
             @PathVariable(value = "itemId") Long itemId,
-            @Valid @ModelAttribute(value = "form") BookForm bookForm,
+            @Valid @ModelAttribute(value = "form") ItemForm form,
             BindingResult bindingResult
     ) {
         if (bindingResult.hasErrors()) {
             return "items/updateItemForm";
         }
 
-        Item item = itemService.findOne(itemId);
-
-        if (item instanceof Book book) {
-            book.updateBook(bookForm);
-        }
-
-        itemService.saveItem(item);
+        UpdateItemDto updateItemDto = new UpdateItemDto(form);
+        itemService.updateItem(itemId, updateItemDto);
 
         return "redirect:/items";
     }
